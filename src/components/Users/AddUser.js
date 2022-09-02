@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
+import UserCreatedToast from "./UserCreatedToast";
+
+import * as bootstrap from 'bootstrap'
 
 const AddUser = (props) => {
     const [enteredUsername, setEnteredUsername] = useState('');
@@ -12,7 +15,7 @@ const AddUser = (props) => {
         event.preventDefault();
 
         if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
-            
+
             if (enteredUsername.trim().length === 0) setIsEnteredUsernameValid(false);
             if (enteredAge.trim().length === 0) setIsEnteredAgeValid(false);
 
@@ -24,6 +27,7 @@ const AddUser = (props) => {
             return;
         }
 
+        showToast();
         props.onAddUser(enteredUsername, enteredAge);
         setEnteredUsername('');
         setEnteredAge('');
@@ -41,22 +45,32 @@ const AddUser = (props) => {
         setEnteredAge(event.target.value);
     }
 
+    const showToast = () => {
+        const toastLiveExample = document.getElementById('liveToast');
+        const toast = new bootstrap.Toast(toastLiveExample);
+
+        toast.show();
+    };
+
     return (
-        <Card>
-            <form onSubmit={addUserHandler} className='needs-validation' noValidate>
-                <div className="mb-3">
-                    <label htmlFor="username" className="form-label">Username</label>
-                    <input type="text" className={`${'form-control'} ${!isEnteredUsernameValid && 'is-invalid'}`} id="username" value={enteredUsername} onChange={usernameChangeHandler} required />
-                    {!isEnteredUsernameValid ? <div className="invalid-feedback">Please, write a valid username</div> : ''}
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="age" className="form-label">Age (Years)</label>
-                    <input type="number" className={`${'form-control'} ${!isEnteredAgeValid && 'is-invalid'}`} id="age" value={enteredAge} onChange={ageChangeHandler} required />
-                    {!isEnteredAgeValid ? <div className="invalid-feedback">Please, write a valid age</div> : ''}
-                </div>
-                <Button type="submit">Add User</Button>
-            </form>
-        </Card>
+        <div>
+            <UserCreatedToast id='liveToast'/>
+            <Card>
+                <form onSubmit={addUserHandler} className='needs-validation' noValidate>
+                    <div className="mb-3">
+                        <label htmlFor="username" className="form-label">Username</label>
+                        <input type="text" className={`${'form-control'} ${!isEnteredUsernameValid && 'is-invalid'}`} id="username" value={enteredUsername} onChange={usernameChangeHandler} required />
+                        {!isEnteredUsernameValid ? <div className="invalid-feedback">Please, write a valid username</div> : ''}
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="age" className="form-label">Age (Years)</label>
+                        <input type="number" className={`${'form-control'} ${!isEnteredAgeValid && 'is-invalid'}`} id="age" value={enteredAge} onChange={ageChangeHandler} required />
+                        {!isEnteredAgeValid ? <div className="invalid-feedback">Please, write a valid age</div> : ''}
+                    </div>
+                    <Button type="submit">Add User</Button>
+                </form>
+            </Card>
+        </div>
     );
 };
 

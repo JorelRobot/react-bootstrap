@@ -10,14 +10,14 @@ function App() {
 
   const addUserHandler = (userName, userAge) => {
     setUsersList(prevUsersList => {
-        return [...prevUsersList, {name: userName, age: userAge, id: Math.random().toString()}];
+        return [{name: userName, age: userAge, id: Math.random().toString()}, ...prevUsersList];
     });
   }
 
   return (
     <div className='container'>
       <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList} />
+      <UsersList users={usersList} /> 
     </div>
   )
 }
