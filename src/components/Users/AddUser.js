@@ -54,7 +54,7 @@ const AddUser = (props) => {
 
     return (
         <div>
-            <UserCreatedToast id='liveToast'/>
+            <UserCreatedToast id='liveToast' />
             <Card>
                 <form onSubmit={addUserHandler} className='needs-validation' noValidate>
                     <div className="mb-3">

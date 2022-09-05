@@ -4,7 +4,7 @@ const UsersList = (props) => {
 
     return (
         <Card>
-            {props.users.map(user => {
+            {props.users.length > 0 ? props.users.map(user => {
                 return <div className="card mb-3" key={user.id}>
                     <div className="row g-0">
                         <div className="col-md-3">
@@ -19,7 +19,9 @@ const UsersList = (props) => {
                         </div>
                     </div>
                 </div>
-            })}
+            }) : <div>
+                    <p className="display-6">No users to show :'(</p>
+                </div>}
         </Card>
     );
 };
