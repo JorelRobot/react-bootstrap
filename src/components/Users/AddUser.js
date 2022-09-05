@@ -53,7 +53,7 @@ const AddUser = (props) => {
     };
 
     return (
-        <div>
+        <>
             <UserCreatedToast id='liveToast' />
             <Card>
                 <form onSubmit={addUserHandler} className='needs-validation' noValidate>
@@ -70,7 +70,7 @@ const AddUser = (props) => {
                     <Button type="submit">Add User</Button>
                 </form>
             </Card>
-        </div>
+        </>
     );
 };
 

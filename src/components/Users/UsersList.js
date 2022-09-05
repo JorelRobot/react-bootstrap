@@ -1,3 +1,4 @@
+import React from "react";
 import Card from "../UI/Card";
 
 const UsersList = (props) => {
@@ -19,9 +20,9 @@ const UsersList = (props) => {
                         </div>
                     </div>
                 </div>
-            }) : <div>
+            }) : <React.Fragment>
                     <p className="display-6">No users to show :'(</p>
-                </div>}
+                </ React.Fragment>}
         </Card>
     );
 };
