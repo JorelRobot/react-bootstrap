@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import UserCreatedToast from "./UserCreatedToast";
@@ -54,7 +55,7 @@ const AddUser = (props) => {
 
     return (
         <>
-            <UserCreatedToast id='liveToast' />
+            {ReactDOM.createPortal(<UserCreatedToast id='liveToast' />, document.getElementById('user-created-toast'))}
             <Card>
                 <form onSubmit={addUserHandler} className='needs-validation' noValidate>
                     <div className="mb-3">
